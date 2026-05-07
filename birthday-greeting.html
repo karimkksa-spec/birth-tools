@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تهنئة عيد الميلاد 🎂 Happy Birthday</title>
+<meta name="description" content="أرسل تهنئة عيد ميلاد شخصية مع صورة وموسيقى وألعاب نارية">
+<meta name="keywords" content="عيد ميلاد سعيد, تهنئة عيد الميلاد, happy birthday, تهنئة شخصية">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Dancing+Script:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { font-family: 'Tajawal', sans-serif; direction: rtl; overflow-x: hidden; }
+#sidebar, .sidebar, #secondary, .secondary, .widget-area, aside, [class*="sidebar"] { display: none !important; }
+#content, .site-content, #main, .main-box, .vce-main-content, #primary, .entry-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+header.entry-header, .entry-header, .entry-meta, .post-thumbnail, .mks-breadcrumbs-container { display: none !important; }
+article, #main, #primary, #content { padding-top: 0 !important; margin-top: 0 !important; }
+#wpadminbar { display: none !important; }
+
+#bd-app { width: 100%; min-height: 100vh; background: linear-gradient(135deg, #0a0015 0%, #1a0030 100%); color: #fff; position: relative; overflow: hidden; }
+#bg-stars { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0.6; animation: twinkle var(--dur, 3s) infinite; }
+@keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+#fw { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+#cf { position: fixed; inset: 0; z-index: 999; pointer-events: none; }
+.balloons { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.balloon { position: absolute; font-size: 2rem; animation: rise var(--dur, 8s) ease-in var(--delay, 0s) infinite; }
+@keyframes rise { 0% { opacity: 1; transform: translateY(0) rotateZ(-5deg); } 100% { opacity: 0; transform: translateY(-120vh) rotateZ(5deg); } }
+.rose { position: absolute; top: -40px; font-size: 1.2rem; animation: fall var(--dur, 7s) linear var(--delay, 0s) infinite; }
+@keyframes fall { 0% { opacity: 0; transform: translateY(0) rotateZ(0); } 10% { opacity: 1; } 100% { opacity: 0; transform: translateY(110vh) rotateZ(720deg); } }
+
+.page { display: none; position: relative; z-index: 10; min-height: 100vh; padding: 24px 16px 80px; align-items: center; flex-direction: column; }
+.page.active { display: flex; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.container { width: 100%; max-width: 500px; }
+.header { text-align: center; margin-bottom: 28px; }
+.cake-icon { font-size: 64px; display: block; margin-bottom: 8px; animation: bounce 2s ease-in-out infinite; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.title { font-family: 'Pacifico', cursive; font-size: 32px; background: linear-gradient(135deg, #ff6b9d, #ffd93d, #6bceff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 4px; }
+.subtitle { font-size: 14px; color: rgba(255, 255, 255, 0.5); }
+
+.card { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 24px; padding: 28px 22px; backdrop-filter: blur(16px); }
+.card-title { font-size: 15px; font-weight: 700; color: #ffd93d; text-align: center; margin-bottom: 22px; letter-spacing: 0.5px; }
+
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 13px; color: rgba(255, 255, 255, 0.6); margin-bottom: 7px; font-weight: 500; }
+.form-group input, .form-group textarea { width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.07); border: 1.5px solid rgba(255, 255, 255, 0.1); border-radius: 13px; color: #fff; font-family: 'Tajawal', sans-serif; font-size: 15px; outline: none; transition: border 0.2s; }
+.form-group input:focus, .form-group textarea:focus { border-color: #ff6b9d; background: rgba(255, 107, 157, 0.06); }
+.form-group input[type="date"] { color-scheme: dark; }
+
+.upload-area { border: 2px dashed rgba(255, 107, 157, 0.4); border-radius: 16px; padding: 24px; text-align: center; cursor: pointer; transition: all 0.2s; background: rgba(255, 107, 157, 0.04); }
+.upload-area:hover { border-color: #ff6b9d; background: rgba(255, 107, 157, 0.08); }
+.upload-icon { font-size: 36px; margin-bottom: 8px; }
+.upload-text { font-size: 13px; color: rgba(255, 255, 255, 0.5); }
+.upload-status { font-size: 12px; color: #69f0ae; margin-top: 6px; display: none; }
+#photo-preview { width: 100%; max-height: 160px; object-fit: cover; border-radius: 12px; margin-top: 8px; border: 2px solid rgba(255, 107, 157, 0.4); display: none; }
+.remove-btn { background: rgba(255, 50, 50, 0.15); border: 1px solid rgba(255, 50, 50, 0.4); color: #ff6b6b; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; margin-top: 8px; display: none; width: 100%; }
+
+.btn { width: 100%; padding: 16px; border: none; border-radius: 16px; font-family: 'Tajawal', sans-serif; font-size: 18px; font-weight: 900; cursor: pointer; transition: all 0.15s; letter-spacing: 0.3px; }
+.btn-primary { background: linear-gradient(135deg, #ff6b9d, #ff8e53); color: #fff; box-shadow: 0 6px 30px rgba(255, 107, 157, 0.4); margin-top: 6px; }
+.btn-primary:hover { transform: scale(1.02); box-shadow: 0 8px 40px rgba(255, 107, 157, 0.5); }
+.btn-primary:active { transform: scale(0.98); }
+.btn-secondary { background: linear-gradient(135deg, #6bceff, #4a90d9); color: #fff; box-shadow: 0 4px 20px rgba(100, 200, 255, 0.3); margin-top: 12px; }
+.btn-outline { background: transparent; border: 1.5px solid rgba(255, 107, 157, 0.3); color: #ff6b9d; margin-top: 12px; }
+.btn-outline:hover { background: rgba(255, 107, 157, 0.06); }
+.btn-viral { background: linear-gradient(135deg, #ff6b9d, #ff8e53); color: #fff; font-size: 17px; box-shadow: 0 4px 20px rgba(255, 107, 157, 0.4); }
+
+.hint { background: rgba(255, 255, 255, 0.04); border: 1px dashed rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 14px; margin-top: 14px; font-size: 13px; color: rgba(255, 255, 255, 0.45); text-align: center; line-height: 1.8; }
+.hint strong { color: #ffd93d; }
+
+.share-box { width: 100%; max-width: 440px; }
+.share-header { text-align: center; margin-bottom: 20px; }
+.share-icon { font-size: 50px; display: block; margin-bottom: 8px; }
+.share-header h2 { font-family: 'Pacifico', cursive; font-size: 24px; color: #ffd93d; }
+.share-header p { font-size: 14px; color: rgba(255, 255, 255, 0.4); margin-top: 6px; }
+
+.link-box { background: rgba(0, 0, 0, 0.3); border: 1.5px dashed rgba(255, 107, 157, 0.4); border-radius: 15px; padding: 16px; margin-bottom: 14px; }
+.link-label { font-size: 11px; color: rgba(255, 107, 157, 0.8); margin-bottom: 8px; font-weight: 700; }
+.link-value { font-size: 11px; color: #ccc; word-break: break-all; background: rgba(0, 0, 0, 0.3); padding: 10px 12px; border-radius: 10px; margin-bottom: 10px; direction: ltr; text-align: left; font-family: monospace; max-height: 70px; overflow: hidden; }
+.copy-status { font-size: 13px; color: #69f0ae; text-align: center; height: 22px; opacity: 0; transition: opacity 0.3s; margin-top: 6px; }
+.copy-status.show { opacity: 1; }
+
+.share-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.share-btn { padding: 13px 8px; border: 1.5px solid rgba(255, 255, 255, 0.1); border-radius: 12px; background: rgba(255, 255, 255, 0.05); color: #fff; font-family: 'Tajawal', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; text-align: center; }
+.share-btn:hover { background: rgba(255, 255, 255, 0.1); }
+.share-btn span { display: block; font-size: 22px; margin-bottom: 4px; }
+
+.greeting-box { width: 100%; max-width: 500px; margin: 0 auto; }
+.cake-section { text-align: center; padding: 36px 20px 20px; }
+.cake-name { font-family: 'Dancing Script', cursive; font-size: 36px; color: #ffd93d; text-shadow: 0 0 20px rgba(255, 217, 61, 0.5); margin-bottom: 4px; }
+.cake-sub { font-size: 15px; color: rgba(255, 255, 255, 0.55); }
+.age-badge { display: inline-block; background: linear-gradient(135deg, #ff6b9d, #ff8e53); border-radius: 50px; padding: 6px 20px; font-size: 13px; font-weight: 700; color: #fff; margin-top: 8px; box-shadow: 0 4px 18px rgba(255, 107, 157, 0.4); }
+
+.photo-section { padding: 0 20px 16px; text-align: center; display: none; }
+.greeting-photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #ff6b9d; box-shadow: 0 0 0 8px rgba(255, 107, 157, 0.15), 0 0 40px rgba(255, 107, 157, 0.35); display: block; margin: 0 auto; animation: photoPulse 3s ease-in-out infinite; }
+@keyframes photoPulse { 0%, 100% { box-shadow: 0 0 0 8px rgba(255, 107, 157, 0.15), 0 0 40px rgba(255, 107, 157, 0.35); } 50% { box-shadow: 0 0 0 14px rgba(255, 107, 157, 0.08), 0 0 60px rgba(255, 107, 157, 0.45); } }
+
+.music-btn { display: block; margin: 0 16px 16px; padding: 13px 28px; background: rgba(255, 217, 61, 0.12); border: 1.5px solid rgba(255, 217, 61, 0.3); border-radius: 50px; color: #ffd93d; font-family: 'Tajawal', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-align: center; width: calc(100% - 32px); }
+.music-btn:hover { background: rgba(255, 217, 61, 0.2); }
+
+.message-card { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 107, 157, 0.2); border-radius: 22px; padding: 24px 20px; margin: 0 16px 16px; backdrop-filter: blur(12px); }
+.msg-from { font-size: 12px; color: rgba(255, 107, 157, 0.7); margin-bottom: 10px; font-weight: 600; text-align: center; }
+.msg-text { font-family: 'Dancing Script', cursive; font-size: 20px; color: #f8f8f8; line-height: 1.8; text-align: center; white-space: pre-line; }
+.msg-divider { width: 60px; height: 2px; background: linear-gradient(90deg, transparent, #ff6b9d, transparent); margin: 14px auto; }
+.msg-date { font-size: 13px; color: rgba(255, 255, 255, 0.3); text-align: center; }
+
+.viral-section { background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(255, 142, 83, 0.1)); border: 1px solid rgba(255, 107, 157, 0.2); border-radius: 20px; padding: 22px 18px; margin: 0 16px 24px; text-align: center; }
+.viral-title { font-size: 17px; font-weight: 900; color: #ffd93d; margin-bottom: 8px; }
+.viral-desc { font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-bottom: 16px; line-height: 1.7; }
+
+.tags { text-align: center; padding: 16px; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 16px; }
+.tag { display: inline-block; background: rgba(255, 255, 255, 0.03); color: rgba(255, 255, 255, 0.18); padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 11px; margin: 0.15rem; }
+
+.loading { display: none; position: fixed; inset: 0; background: rgba(10, 0, 21, 0.8); z-index: 9999; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+.loading.show { display: flex; }
+.spinner { width: 40px; height: 40px; border: 4px solid rgba(255, 107, 157, 0.2); border-top-color: #ff6b9d; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { color: #ffd93d; font-size: 16px; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div id="bd-app">
+  <div id="bg-stars"></div>
+  <div class="balloons" id="balloons"></div>
+  <canvas id="fw"></canvas>
+  <canvas id="cf"></canvas>
+  
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loading-text">جاري الإنشاء...</div>
+  </div>
+
+  <!-- PAGE 1: FORM -->
+  <div class="page active" id="page-send">
+    <div class="container">
+      <div class="header">
+        <span class="cake-icon">🎂</span>
+        <div class="title">Happy Birthday!</div>
+        <div class="subtitle">أرسل تهنئة عيد ميلاد لا تُنسى</div>
+      </div>
+      <div class="card">
+        <div class="card-title">🎉 أنشئ تهنئة شخصية</div>
+        <div class="form-group">
+          <label>اسم صاحب/ة عيد الميلاد *</label>
+          <input type="text" id="to-name" placeholder="مثال: سارة" maxlength="30">
+        </div>
+        <div class="form-group">
+          <label>اسمك (المُهنِّئ) *</label>
+          <input type="text" id="from-name" placeholder="مثال: علي" maxlength="30">
+        </div>
+        <div class="form-group">
+          <label>رسالتك الخاصة</label>
+          <textarea id="message" rows="5" placeholder="اكتب رسالة من قلبك...&#10;كل عام وأنت بخير يا..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>تاريخ الميلاد (اختياري)</label>
+          <input type="date" id="birth-date">
+        </div>
+        <div class="form-group">
+          <label>صورة صاحب/ة عيد الميلاد (اختياري)</label>
+          <div class="upload-area" id="upload-area">
+            <div class="upload-icon">📷</div>
+            <div class="upload-text">اضغط لاختيار صورة</div>
+            <div class="upload-status" id="upload-status">✓ تم اختيار الصورة</div>
+          </div>
+          <input type="file" id="photo-input" accept="image/*" style="display:none">
+          <img id="photo-preview" alt="معاينة الصورة">
+          <button class="remove-btn" id="remove-btn">✕ إزالة الصورة</button>
+        </div>
+        <button class="btn btn-primary" id="gen-btn">🎂 أنشئ رابط التهنئة</button>
+        <div class="hint">
+          📲 سيجد صاحبك تهنئة باسمه مع<br>
+          <strong>🎆 ألعاب نارية  🌹 ورود  🎵 موسيقى Happy Birthday</strong>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">عيد ميلاد سعيد</span>
+        <span class="tag">تهنئة عيد الميلاد</span>
+        <span class="tag">happy birthday</span>
+        <span class="tag">هابي بيرث داي</span>
+        <span class="tag">تهنئة شخصية</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: SHARE -->
+  <div class="page" id="page-share">
+    <div class="share-box">
+      <div class="share-header">
+        <span class="share-icon">🎉</span>
+        <h2>رابطك جاهز!</h2>
+        <p id="share-desc">أرسله لصاحب/ة عيد الميلاد الآن 🎂</p>
+      </div>
+      <div class="card">
+        <div class="link-box">
+          <div class="link-label">🔗 رابط التهنئة</div>
+          <div class="link-value" id="link-value">---</div>
+          <button class="btn btn-secondary" id="copy-btn">📋 انسخ الرابط</button>
+          <p class="copy-status" id="copy-status">✓ تم النسخ!</p>
+        </div>
+        <div class="share-row">
+          <button class="share-btn" id="wa-btn"><span>💬</span>واتساب</button>
+          <button class="share-btn" id="native-share"><span>📤</span>مشاركة</button>
+        </div>
+        <button class="btn btn-outline" id="new-btn">🔄 تهنئة جديدة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: GREETING -->
+  <div class="page" id="page-greeting">
+    <div class="greeting-box">
+      <div class="cake-section">
+        <svg viewBox="0 0 200 200" width="180" height="180" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto 12px">
+          <ellipse cx="100" cy="178" rx="78" ry="11" fill="rgba(255,255,255,.07)"/>
+          <rect x="28" y="130" width="144" height="48" rx="10" fill="#ff6b9d"/>
+          <rect x="28" y="130" width="144" height="14" rx="6" fill="#ff8eaf"/>
+          <rect x="44" y="88" width="112" height="46" rx="10" fill="#ffd93d"/>
+          <rect x="44" y="88" width="112" height="14" rx="6" fill="#ffe566"/>
+          <rect x="60" y="52" width="80" height="40" rx="10" fill="#6bceff"/>
+          <rect x="60" y="52" width="80" height="14" rx="6" fill="#8dd8ff"/>
+          <path d="M33 144 Q46 158 59 144 Q72 158 85 144 Q98 158 111 144 Q124 158 137 144 Q150 158 164 144" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M49 102 Q62 116 75 102 Q88 116 101 102 Q114 116 127 102 Q140 116 150 102" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="3" stroke-linecap="round"/>
+          <rect x="76" y="26" width="9" height="28" rx="4" fill="#ff6b9d"/>
+          <ellipse cx="80" cy="20" rx="6" ry="10" fill="#ffd93d" style="animation: flicker 1s ease-in-out infinite alternate"/>
+          <rect x="95" y="22" width="9" height="32" rx="4" fill="#ffd93d"/>
+          <ellipse cx="99" cy="15" rx="6" ry="10" fill="#ff8e53" style="animation: flicker 1s ease-in-out infinite alternate"/>
+          <rect x="114" y="26" width="9" height="28" rx="4" fill="#6bceff"/>
+          <ellipse cx="118" cy="20" rx="6" ry="10" fill="#ffd93d" style="animation: flicker 1s ease-in-out infinite alternate"/>
+        </svg>
+        <div class="cake-name" id="greeting-name">سارة</div>
+        <div class="cake-sub">🎉 عيد ميلاد سعيد! 🎉</div>
+        <div class="age-badge" id="age-badge" style="display:none"></div>
+      </div>
+      <div class="photo-section" id="photo-section">
+        <img class="greeting-photo" id="greeting-photo" alt="صورة عيد الميلاد">
+      </div>
+      <button class="music-btn" id="music-btn">🎵 اضغط لتشغيل Happy Birthday</button>
+      <div class="message-card">
+        <div class="msg-from" id="msg-from">رسالة خاصة من: علي</div>
+        <div class="msg-text" id="msg-text">كل عام وأنت بخير!</div>
+        <div class="msg-divider"></div>
+        <div class="msg-date" id="msg-date"></div>
+      </div>
+      <div class="viral-section">
+        <div class="viral-title">🎂 هنّئ أنت أحبابك!</div>
+        <div class="viral-desc">أنشئ تهنئة عيد ميلاد شخصية مع صورة وموسيقى في ثوانٍ</div>
+        <button class="btn btn-viral" id="create-btn">أنشئ تهنئتك الآن 🎉</button>
+      </div>
+      <div class="tags">
+        <span class="tag">عيد ميلاد سعيد</span>
+        <span class="tag">happy birthday</span>
+        <span class="tag">تهنئة عيد الميلاد</span>
+        <span class="tag">هابي بيرث داي</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+var app = {
+  photoBase64: '',
+  currentLink: '',
+  currentTo: '',
+  audioCtx: null,
+  isPlaying: false,
+  notes: [{f:264,d:.25},{f:264,d:.25},{f:297,d:.5},{f:264,d:.5},{f:352,d:.5},{f:330,d:1},{f:264,d:.25},{f:264,d:.25},{f:297,d:.5},{f:264,d:.5},{f:396,d:.5},{f:352,d:1},{f:264,d:.25},{f:264,d:.25},{f:528,d:.5},{f:440,d:.5},{f:352,d:.5},{f:330,d:.5},{f:297,d:1},{f:468,d:.25},{f:468,d:.25},{f:440,d:.5},{f:352,d:.5},{f:396,d:.5},{f:352,d:1.2}],
+
+  init: function() {
+    this.createStars();
+    this.createBalloons();
+    this.setupCanvas();
+    this.bindEvents();
+    this.checkHash();
+  },
+
+  createStars: function() {
+    var bg = document.getElementById('bg-stars');
+    for (var i = 0; i < 100; i++) {
+      var star = document.createElement('div');
+      star.className = 'star';
+      var dur = 2 + Math.random() * 4;
+      star.style.cssText = 'width:' + (1 + Math.random() * 2) + 'px; height:' + (1 + Math.random() * 2) + 'px; top:' + Math.random() * 100 + '%; left:' + Math.random() * 100 + '%; --dur:' + dur + 's;';
+      bg.appendChild(star);
+    }
+  },
+
+  createBalloons: function() {
+    var cont = document.getElementById('balloons');
+    var colors = ['🎈', '🎀', '🎊', '🎁', '⭐', '💫', '🥳'];
+    var roses = ['🌹', '🌸', '🌺', '🌼', '💐', '🌷'];
+    for (var i = 0; i < 10; i++) {
+      var b = document.createElement('div');
+      b.className = 'balloon';
+      b.textContent = colors[Math.floor(Math.random() * colors.length)];
+      b.style.cssText = 'left:' + (5 + Math.random() * 90) + '%; --dur:' + (7 + Math.random() * 8) + 's; --delay:-' + Math.random() * 10 + 's; font-size:' + (18 + Math.random() * 18) + 'px;';
+      cont.appendChild(b);
+    }
+    for (var j = 0; j < 12; j++) {
+      var r = document.createElement('div');
+      r.className = 'rose';
+      r.textContent = roses[Math.floor(Math.random() * roses.length)];
+      r.style.cssText = 'left:' + Math.random() * 95 + '%; --dur:' + (6 + Math.random() * 7) + 's; --delay:-' + Math.random() * 8 + 's; font-size:' + (13 + Math.random() * 15) + 'px;';
+      cont.appendChild(r);
+    }
+  },
+
+  setupCanvas: function() {
+    var fw = document.getElementById('fw');
+    var cf = document.getElementById('cf');
+    fw.width = window.innerWidth;
+    fw.height = window.innerHeight;
+    cf.width = window.innerWidth;
+    cf.height = window.innerHeight;
+    window.addEventListener('resize', function() {
+      fw.width = window.innerWidth;
+      fw.height = window.innerHeight;
+      cf.width = window.innerWidth;
+      cf.height = window.innerHeight;
+    });
+  },
+
+  bindEvents: function() {
+    var self = this;
+    document.getElementById('upload-area').addEventListener('click', function() { document.getElementById('photo-input').click(); });
+    document.getElementById('photo-input').addEventListener('change', function() { self.handlePhoto(this); });
+    document.getElementById('remove-btn').addEventListener('click', function() { self.removePhoto(); });
+    document.getElementById('gen-btn').addEventListener('click', function() { self.generate(); });
+    document.getElementById('copy-btn').addEventListener('click', function() { self.copyLink(); });
+    document.getElementById('wa-btn').addEventListener('click', function() { self.shareWA(); });
+    document.getElementById('native-share').addEventListener('click', function() { self.shareNative(); });
+    document.getElementById('new-btn').addEventListener('click', function() { self.reset(); });
+    document.getElementById('music-btn').addEventListener('click', function() { self.playMusic(); });
+    document.getElementById('create-btn').addEventListener('click', function() { window.location.hash = ''; self.showPage('page-send'); });
+    window.addEventListener('hashchange', function() { self.checkHash(); });
+  },
+
+  handlePhoto: function(input) {
+    var file = input.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    var self = this;
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onload = function() {
+        var MAX = 160, w = img.width, h = img.height;
+        if (w > h) { if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; } }
+        else { if (h > MAX) { w = Math.round(w * MAX / h); h = MAX; } }
+        var cv = document.createElement('canvas');
+        cv.width = w; cv.height = h;
+        cv.getContext('2d').drawImage(img, 0, 0, w, h);
+        self.photoBase64 = cv.toDataURL('image/jpeg', 0.55);
+        document.getElementById('photo-preview').src = self.photoBase64;
+        document.getElementById('photo-preview').style.display = 'block';
+        document.getElementById('remove-btn').style.display = 'block';
+        document.getElementById('upload-status').style.display = 'block';
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  },
+
+  removePhoto: function() {
+    this.photoBase64 = '';
+    document.getElementById('photo-preview').style.display = 'none';
+    document.getElementById('remove-btn').style.display = 'none';
+    document.getElementById('photo-input').value = '';
+    document.getElementById('upload-status').style.display = 'none';
+  },
+
+  encode: function(obj) {
+    try {
+      var json = JSON.stringify(obj);
+      var bytes = [];
+      for (var i = 0; i < json.length; i++) {
+        var code = json.charCodeAt(i);
+        if (code < 128) bytes.push(code);
+        else if (code < 2048) { bytes.push((code >> 6) | 192); bytes.push((code & 63) | 128); }
+        else { bytes.push((code >> 12) | 224); bytes.push(((code >> 6) & 63) | 128); bytes.push((code & 63) | 128); }
+      }
+      var binary = '';
+      for (var j = 0; j < bytes.length; j++) binary += String.fromCharCode(bytes[j]);
+      return btoa(binary);
+    } catch (e) { return ''; }
+  },
+
+  decode: function(str) {
+    try {
+      var binary = atob(str);
+      var bytes = [];
+      for (var i = 0; i < binary.length; i++) bytes.push(binary.charCodeAt(i));
+      var result = '';
+      var i2 = 0;
+      while (i2 < bytes.length) {
+        var b = bytes[i2];
+        if (b < 128) { result += String.fromCharCode(b); i2++; }
+        else if (b < 224) { result += String.fromCharCode(((b & 31) << 6) | (bytes[i2 + 1] & 63)); i2 += 2; }
+        else { result += String.fromCharCode(((b & 15) << 12) | ((bytes[i2 + 1] & 63) << 6) | (bytes[i2 + 2] & 63)); i2 += 3; }
+      }
+      return JSON.parse(result);
+    } catch (e) { return null; }
+  },
+
+  generate: function() {
+    var to = (document.getElementById('to-name').value || '').trim();
+    var from = (document.getElementById('from-name').value || '').trim();
+    var msg = (document.getElementById('message').value || '').trim();
+    var date = document.getElementById('birth-date').value;
+    if (!to) { alert('ادخل اسم المستقبل'); return; }
+    if (!from) { alert('ادخل اسمك'); return; }
+    var defMsg = 'كل عام وأنت بخير يا ' + to + '\nأتمنى لك عيد ميلاد مليء بالفرح والحب والسعادة!';
+    var data = { to: to, from: from, msg: msg || defMsg, date: date, photo: this.photoBase64 };
+    var encoded = this.encode(data);
+    if (!encoded) { alert('الصورة كبيرة جداً'); return; }
+    var base = window.location.href.split('#')[0].split('?')[0];
+    this.currentLink = base + '#bd=' + encoded;
+    this.currentTo = to;
+    document.getElementById('link-value').textContent = this.currentLink;
+    document.getElementById('share-desc').textContent = 'أرسله لـ ' + to + ' الآن 🎂';
+    this.showPage('page-share');
+  },
+
+  copyLink: function() {
+    var self = this;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(this.currentLink).then(function() { self.showCopyStatus(); }).catch(function() { self.fallbackCopy(); });
+    } else { this.fallbackCopy(); }
+  },
+
+  fallbackCopy: function() {
+    var ta = document.createElement('textarea');
+    ta.value = this.currentLink;
+    ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) { }
+    document.body.removeChild(ta);
+    this.showCopyStatus();
+  },
+
+  showCopyStatus: function() {
+    var st = document.getElementById('copy-status');
+    st.classList.add('show');
+    setTimeout(function() { st.classList.remove('show'); }, 2500);
+  },
+
+  shareWA: function() {
+    var msg = '🎂 عيد ميلاد سعيد يا ' + this.currentTo + '!\nلديك مفاجأة خاصة 🎉\n' + this.currentLink;
+    window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+  },
+
+  shareNative: function() {
+    if (navigator.share) {
+      navigator.share({ title: 'Happy Birthday ' + this.currentTo, url: this.currentLink }).catch(function() { });
+    } else { this.copyLink(); }
+  },
+
+  reset: function() {
+    document.getElementById('to-name').value = '';
+    document.getElementById('from-name').value = '';
+    document.getElementById('message').value = '';
+    document.getElementById('birth-date').value = '';
+    this.removePhoto();
+    window.location.hash = '';
+    this.showPage('page-send');
+  },
+
+  playMusic: function() {
+    if (this.isPlaying) return;
+    var self = this;
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    if (!this.audioCtx) this.audioCtx = new AC();
+    if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+    this.isPlaying = true;
+    var t = this.audioCtx.currentTime + 0.1, tp = 0.44;
+    this.notes.forEach(function(n) {
+      var o = self.audioCtx.createOscillator(), g = self.audioCtx.createGain();
+      o.connect(g); g.connect(self.audioCtx.destination);
+      o.type = 'sine'; o.frequency.setValueAtTime(n.f, t);
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(0.32, t + 0.05);
+      g.gain.linearRampToValueAtTime(0, t + n.d * tp - 0.04);
+      o.start(t); o.stop(t + n.d * tp);
+      t += n.d * tp;
+    });
+    var tot = 0; this.notes.forEach(function(n) { tot += n.d; });
+    tot = tot * tp * 1000 + 300;
+    setTimeout(function() { self.isPlaying = false; }, tot);
+  },
+
+  showPage: function(id) {
+    var all = document.querySelectorAll('.page');
+    for (var i = 0; i < all.length; i++) all[i].classList.remove('active');
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  },
+
+  calcAge: function(ds) {
+    if (!ds) return null;
+    var b = new Date(ds), t = new Date();
+    var a = t.getFullYear() - b.getFullYear();
+    var m = t.getMonth() - b.getMonth();
+    if (m < 0 || (m === 0 && t.getDate() < b.getDate())) a--;
+    return a > 0 && a < 120 ? a : null;
+  },
+
+  formatDate: function(ds) {
+    if (!ds) return '';
+    var d = new Date(ds);
+    var M = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+    return d.getDate() + ' ' + M[d.getMonth()] + ' ' + d.getFullYear();
+  },
+
+  checkHash: function() {
+    var h = window.location.hash;
+    if (!h || h.indexOf('#bd=') < 0) { this.showPage('page-send'); return; }
+    var data = this.decode(h.replace('#bd=', ''));
+    if (!data || !data.to || !data.from) { this.showPage('page-send'); return; }
+    document.getElementById('greeting-name').textContent = data.to;
+    document.getElementById('msg-from').textContent = '💌 رسالة خاصة من: ' + data.from;
+    document.getElementById('msg-text').textContent = data.msg || 'كل عام وأنت بخير!';
+    if (data.date) {
+      var age = this.calcAge(data.date);
+      document.getElementById('msg-date').textContent = '🎂 ' + this.formatDate(data.date) + (age ? ' — عمر ' + age + ' سنة' : '');
+      if (age) { var ab = document.getElementById('age-badge'); ab.textContent = '🎉 ' + age + ' سنة رائعة!'; ab.style.display = 'inline-block'; }
+    }
+    if (data.photo) {
+      var img = document.getElementById('greeting-photo');
+      img.src = data.photo;
+      document.getElementById('photo-section').style.display = 'block';
+    }
+    document.title = 'Happy Birthday ' + data.to + '!';
+    this.showPage('page-greeting');
+    var self = this;
+    setTimeout(function() { self.launchFireworks(10000); self.launchConfetti(8000); }, 500);
+    setTimeout(function() { self.playMusic(); }, 1800);
+  },
+
+  launchFireworks: function(duration) {
+    var fw = document.getElementById('fw');
+    var ctx = fw.getContext('2d');
+    var particles = [];
+    var running = true;
+    var cols = ['#ff6b9d', '#ffd93d', '#6bceff', '#ff8e53', '#c084fc', '#34d399', '#fff'];
+    function createParticles() {
+      var x = 50 + Math.random() * (fw.width - 100);
+      var y = 50 + Math.random() * (fw.height * 0.6);
+      var col = cols[Math.floor(Math.random() * cols.length)];
+      for (var i = 0; i < 45; i++) {
+        var a = Math.PI * 2 / 45 * i;
+        var sp = 2 + Math.random() * 5;
+        particles.push({ x: x, y: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, al: 1, sz: 2 + Math.random() * 3, col: col, g: 0.07 + Math.random() * 0.06 });
+      }
+    }
+    function animate() {
+      ctx.clearRect(0, 0, fw.width, fw.height);
+      particles.forEach(function(p) {
+        p.x += p.vx; p.y += p.vy; p.vy += p.g; p.vx *= 0.98; p.al -= 0.013;
+        ctx.globalAlpha = Math.max(0, p.al);
+        ctx.fillStyle = p.col;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.sz, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      particles = particles.filter(function(p) { return p.al > 0.02; });
+      if (running && particles.length > 0) requestAnimationFrame(animate);
+    }
+    var end = Date.now() + duration;
+    function burst() {
+      createParticles();
+      if (Math.random() > 0.4) createParticles();
+      if (Date.now() < end) { setTimeout(burst, 280 + Math.random() * 350); }
+      else { running = false; setTimeout(function() { ctx.clearRect(0, 0, fw.width, fw.height); }, 2000); }
+    }
+    burst();
+    animate();
+  },
+
+  launchConfetti: function(duration) {
+    var cf = document.getElementById('cf');
+    var ctx = cf.getContext('2d');
+    var particles = [];
+    function createParticle() {
+      var cols = ['#ff6b9d', '#ffd93d', '#6bceff', '#ff8e53', '#c084fc', '#34d399', '#fff'];
+      return { x: Math.random() * cf.width, y: -10, vy: 2 + Math.random() * 3, vx: (Math.random() - 0.5) * 2, sz: 5 + Math.random() * 8, col: cols[Math.floor(Math.random() * cols.length)], rot: Math.random() * 360, rv: (Math.random() - 0.5) * 6, al: 1, sh: Math.floor(Math.random() * 3) };
+    }
+    function draw(p) {
+      ctx.save(); ctx.globalAlpha = p.al; ctx.translate(p.x, p.y); ctx.rotate(p.rot * Math.PI / 180); ctx.fillStyle = p.col;
+      if (p.sh === 0) { ctx.beginPath(); ctx.arc(0, 0, p.sz / 2, 0, Math.PI * 2); ctx.fill(); }
+      else if (p.sh === 1) { ctx.fillRect(-p.sz / 2, -p.sz / 4, p.sz, p.sz / 2); }
+      else { ctx.beginPath(); ctx.moveTo(0, -p.sz / 2); ctx.lineTo(p.sz / 2, p.sz / 2); ctx.lineTo(-p.sz / 2, p.sz / 2); ctx.closePath(); ctx.fill(); }
+      ctx.restore();
+    }
+    function animate() {
+      ctx.clearRect(0, 0, cf.width, cf.height);
+      particles.forEach(function(p) { p.x += p.vx; p.y += p.vy; p.rot += p.rv; if (p.y > cf.height * 0.65) p.al -= 0.02; draw(p); });
+      particles = particles.filter(function(p) { return p.al > 0 && p.y < cf.height + 20; });
+      if (particles.length > 0) requestAnimationFrame(animate);
+    }
+    var end = Date.now() + duration;
+    function burst() {
+      for (var i = 0; i < 16; i++) particles.push(createParticle());
+      if (Date.now() < end) setTimeout(burst, 80);
+    }
+    burst();
+    animate();
+  }
+};
+
+app.init();
+
+})();
+</script>
+
+</body>
+</html>
